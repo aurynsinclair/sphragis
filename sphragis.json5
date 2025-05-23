@@ -1,0 +1,65 @@
+{
+// ===============================================================
+//  Key Derivation Settings
+//
+// ⚠️ WARNING: This configuration file is not secret,
+// but it is absolutely critical for passphrase derivation.
+//
+// If this file is lost or altered, the derived passphrase
+// will change — and you will permanently lose access to
+// your master seed, and therefore, your entire wallet.
+//
+// 📌 Even though this file contains no private keys or secrets,
+// we strongly recommend storing multiple redundant backups
+// (e.g. across trusted cloud services and offline storage).
+// ===============================================================
+
+
+  // Argon2 version to use.
+  // ✅ Recommended: "0x13" (standardized in RFC 9106).
+  // ⚠️ "0x10" is the older draft version, usually not recommended.
+  "version": "0x13",
+
+  // Parameters passed to Argon2id.
+  // These defaults are carefully calibrated for a balance of security and usability.
+  // Adjust them only if you understand the trade-offs.
+  // (On a mid-range desktop circa 2025, derivation typically completes in ~10 seconds.)
+  //
+  // ⚠️ Note for developers:
+  // Argon2id performance is dramatically slower when running in debug mode.
+  // In dev builds, derivation can take 10× longer than in --release.
+  // If you are tuning these parameters, always benchmark using a release build.
+  "params": {
+    // Memory cost in KiB. 1048576 = 1 GiB.
+    // Higher values increase resistance to GPU and parallelized attacks.
+    // ✅ Recommended: 1048576 or more
+    // ⚠️ Minimum: 65536 (64 MiB)
+    "m_cost": 1048576,
+
+    // Time cost (number of iterations).
+    // Controls the total CPU work per derivation.
+    // ✅ Recommended range: 2–30
+    // ⚠️ Lower values reduce security; higher values increase latency.
+    // 🔧 To adjust overall derivation time, this is the best parameter to tune first.
+    "t_cost": 12,
+
+    // Degree of parallelism.
+    // This should almost always remain 1 to defeat GPU parallelism.
+    // ❌ Do NOT change unless you fully understand the implications.
+    "p_cost": 1
+  },
+
+
+  // Salt value used in key derivation.
+  // Must be unique for each combination of user and device.
+  // (i.e. different devices used by the same user should use different salts.)
+  // This value does NOT need to be secret.
+  // It should be provided as a base64-encoded string.
+  //
+  // The example below is for demonstration purposes only.
+  // ❌ Do NOT use it for actual passphrase derivation.
+  // 💡 To generate a secure salt, run:
+  // `sphragis generate-salt`
+  // Then replace the value below with the generated output.
+  "salt": "QyEVfkkKNre8LFhsc8qQSA=="
+}
