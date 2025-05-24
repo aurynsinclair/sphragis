@@ -1,0 +1,56 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Prepare artifact
+        shell: bash
+        run: |
+          BIN_NAME="sphragis"
+          OS="${{ matrix.os }}"
+          EXT=""
+          ARCHIVE_NAME=""
+
+          if [[ "$OS" == "windows-latest" ]]; then
+            EXT=".exe"
+            ARCHIVE_NAME="${BIN_NAME}-windows.zip"
+            7z a $ARCHIVE_NAME target/release/${BIN_NAME}${EXT}
+          elif [[ "$OS" == "macos-latest" ]]; then
+            ARCHIVE_NAME="${BIN_NAME}-macos.tar.gz"
+            tar -czf $ARCHIVE_NAME -C target/release ${BIN_NAME}
+          else
+            ARCHIVE_NAME="${BIN_NAME}-linux.tar.gz"
+            tar -czf $ARCHIVE_NAME -C target/release ${BIN_NAME}
+          fi
+
+          echo "ARCHIVE=$ARCHIVE_NAME" >> $GITHUB_ENV
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ARCHIVE }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
