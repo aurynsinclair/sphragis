@@ -1,5 +1,9 @@
 # sphragis
 
+[![Latest Release](https://img.shields.io/github/v/release/aurynsinclair/sphragis)](https://github.com/aurynsinclair/sphragis/releases)
+[![License](https://img.shields.io/github/license/aurynsinclair/sphragis)](./LICENSE)
+
+
 **sphragis** is a command-line utility for secure, deterministic derivation of [BIP-39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) passphrases using [Argon2id](https://github.com/p-h-c/phc-winner-argon2) KDF.  
 It takes a user-defined secret phrase and configuration, ensuring consistent outputs and strong resistance against brute-force attacks.  
 
@@ -68,6 +72,16 @@ These features are documented [here](./docs/advanced-usage.md).
 
 ⚠️ **Caution:** While useful for automation and testing, these modes are **not recommended for actual passphrase derivation**,  
 as sensitive input or output may be recorded in shell history, process logs, or CI environments.
+
+
+## 📦 Releases
+
+You can download prebuilt binaries for **Linux**, **macOS**, and **Windows** from the [GitHub Releases page](https://github.com/aurynsinclair/sphragis/releases).
+
+Each release includes:
+
+- Compiled binaries for all platforms
+- Source code archive
 
 ---
 
