@@ -1,6 +1,7 @@
 # sphragis
 
 [![Latest Release](https://img.shields.io/github/v/release/aurynsinclair/sphragis)](https://github.com/aurynsinclair/sphragis/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/aurynsinclair/sphragis/release.yml?branch=main)](https://github.com/aurynsinclair/sphragis/actions)
 [![License](https://img.shields.io/github/license/aurynsinclair/sphragis)](./LICENSE)
 
 
