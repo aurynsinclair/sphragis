@@ -70,18 +70,12 @@ The derived BIP-39 passphrase will be displayed briefly, then automatically hidd
 For scripting, debugging, or parameter tuning, `sphragis` also supports non-interactive operation via standard input/output and a `--verbose` mode for full output visibility.  
 These features are documented [here](./docs/advanced-usage.md).
 
-⚠️ **Caution:** While useful for automation and testing, these modes are **not recommended for actual passphrase derivation**,  
-as sensitive input or output may be recorded in shell history, process logs, or CI environments.
+⚠️ **Caution:** While useful for automation and testing, these modes are **not recommended for actual passphrase derivation**, as sensitive input or output may be recorded in shell history, process logs, or CI environments.
 
 
 ## 📦 Releases
 
 You can download prebuilt binaries for **Linux**, **macOS**, and **Windows** from the [GitHub Releases page](https://github.com/aurynsinclair/sphragis/releases).
-
-Each release includes:
-
-- Compiled binaries for all platforms
-- Source code archive
 
 ---
 
